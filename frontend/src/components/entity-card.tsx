@@ -9,10 +9,10 @@ interface EntityCardProps {
 }
 
 export function EntityCard({ item }: EntityCardProps) {
-  const getScoreColor = (score: number) => {
-    if (score >= 80) return "text-emerald-800 bg-emerald-50 border-emerald-300";
-    if (score >= 60) return "text-amber-800 bg-amber-50 border-amber-300";
-    return "text-rose-800 bg-rose-50 border-rose-300";
+  const getScoreBadge = (score: number) => {
+    if (score >= 80) return "text-emerald-800 bg-emerald-50 border-emerald-300 shadow-sm";
+    if (score >= 60) return "text-amber-800 bg-amber-50 border-amber-300 shadow-sm";
+    return "text-rose-800 bg-rose-50 border-rose-300 shadow-sm";
   };
 
   const getEntityIcon = (type: string) => {
@@ -27,57 +27,57 @@ export function EntityCard({ item }: EntityCardProps) {
   const scorePct = Math.round(item.match_score);
 
   return (
-    <div className="glass-panel glass-panel-hover rounded-3xl p-5.5 space-y-4 relative flex flex-col justify-between border border-slate-200 bg-white/95 group shadow-md">
+    <div className="glass-panel glass-panel-hover rounded-3xl p-6 sm:p-7 space-y-5 flex flex-col justify-between border border-slate-200 bg-white/95 group shadow-md hover:shadow-xl transition-all duration-300">
       
       {/* Header Section */}
-      <div className="space-y-3">
+      <div className="space-y-4">
         
         {/* Top Badges & Score */}
-        <div className="flex items-start justify-between gap-3">
-          <div className="space-y-1.5">
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-2">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-900 px-2.5 py-0.5 rounded-lg bg-slate-100 border border-slate-300 flex items-center gap-1">
-                <EntityTypeIcon className="w-3 h-3 text-emerald-700" />
+              <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-900 px-3 py-1 rounded-xl bg-slate-100 border border-slate-200 flex items-center gap-1.5 shadow-2xs">
+                <EntityTypeIcon className="w-3.5 h-3.5 text-emerald-700" />
                 {item.entity_type}
               </span>
 
               {item.is_qualified ? (
-                <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 px-2 py-0.5 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center gap-1">
-                  <CheckCircle2 className="w-3 h-3 text-emerald-700" />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-800 px-2.5 py-1 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
                   Verified Qualified
                 </span>
               ) : (
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-2 py-0.5 rounded-lg bg-slate-100 border border-slate-200 flex items-center gap-1">
-                  <XCircle className="w-3 h-3 text-slate-400" />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 px-2.5 py-1 rounded-xl bg-slate-100 border border-slate-200 flex items-center gap-1.5">
+                  <XCircle className="w-3.5 h-3.5 text-slate-400" />
                   Unverified Match
                 </span>
               )}
             </div>
 
-            <Link href={`/entity/${item.entity_id}`} className="block group-hover:underline">
-              <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-700 transition-colors leading-snug">
+            <Link href={`/entity/${item.entity_id}`} className="block group-hover:underline pt-0.5">
+              <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-emerald-800 transition-colors leading-snug tracking-tight">
                 {item.name}
               </h3>
             </Link>
 
             {item.location_summary && (
-              <p className="text-xs text-slate-500 flex items-center gap-1 font-medium">
-                <MapPin className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+              <p className="text-xs sm:text-sm text-slate-600 flex items-center gap-1.5 font-medium">
+                <MapPin className="w-4 h-4 text-emerald-700 shrink-0" />
                 <span>{item.location_summary}</span>
               </p>
             )}
           </div>
 
           {/* Match Score Badge */}
-          <div className={`px-3 py-2 rounded-2xl border flex flex-col items-center justify-center shrink-0 ${getScoreColor(item.match_score)} shadow-sm`}>
-            <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">Match</span>
-            <span className="text-lg font-black leading-none mt-0.5">{scorePct}%</span>
+          <div className={`px-3.5 py-2.5 rounded-2xl border flex flex-col items-center justify-center shrink-0 ${getScoreBadge(item.match_score)}`}>
+            <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-500">Match</span>
+            <span className="text-xl font-black leading-none mt-1">{scorePct}%</span>
           </div>
         </div>
 
         {/* Description Snippet */}
         {item.description && (
-          <p className="text-xs sm:text-sm text-slate-700 line-clamp-2 leading-relaxed font-normal bg-slate-50 p-3 rounded-xl border border-slate-100">
+          <p className="text-xs sm:text-sm text-slate-700 line-clamp-3 leading-relaxed font-normal bg-slate-50/90 p-4 rounded-2xl border border-slate-200/80 shadow-2xs">
             "{item.description}"
           </p>
         )}
@@ -85,18 +85,18 @@ export function EntityCard({ item }: EntityCardProps) {
       </div>
 
       {/* Bottom Qualification Justification & Links */}
-      <div className="space-y-3 pt-2">
+      <div className="space-y-4 pt-2">
         
         {/* Qualification Reasoning checklist */}
         {item.qualification_reasons && item.qualification_reasons.length > 0 && (
-          <div className="bg-slate-50/90 rounded-2xl p-3 border border-slate-200 space-y-1.5">
-            <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" /> AI Fact Qualification:
+          <div className="bg-slate-50/90 rounded-2xl p-4 border border-slate-200 space-y-2">
+            <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-700" /> AI Qualification Evidence:
             </span>
-            <ul className="text-[11px] space-y-1 text-slate-800 font-medium">
+            <ul className="text-xs space-y-1.5 text-slate-800 font-medium pt-0.5">
               {item.qualification_reasons.slice(0, 3).map((reason, idx) => (
-                <li key={idx} className="flex items-start gap-1.5 leading-normal">
-                  <span className="text-emerald-700 font-bold shrink-0">✓</span>
+                <li key={idx} className="flex items-start gap-2 leading-relaxed">
+                  <span className="text-emerald-700 font-bold shrink-0 mt-0.5">✓</span>
                   <span>{reason}</span>
                 </li>
               ))}
@@ -105,28 +105,28 @@ export function EntityCard({ item }: EntityCardProps) {
         )}
 
         {/* Links & Lineage Button */}
-        <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600 flex-wrap gap-2">
-          <div className="flex items-center gap-3 flex-wrap font-medium">
+        <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600 flex-wrap gap-3">
+          <div className="flex items-center gap-3.5 flex-wrap font-medium">
             {item.website && (
               <a
                 href={item.website}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1 text-slate-800 hover:text-emerald-700 font-semibold transition-colors"
+                className="flex items-center gap-1.5 text-slate-900 hover:text-emerald-700 font-bold px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-200 transition-colors"
               >
                 <Globe className="w-3.5 h-3.5 text-emerald-700" />
-                <span>Source Domain</span>
-                <ExternalLink className="w-3 h-3 opacity-70" />
+                <span>Visit Domain</span>
+                <ExternalLink className="w-3 h-3 opacity-60" />
               </a>
             )}
             {item.email && (
-              <span className="flex items-center gap-1 text-slate-700">
+              <span className="flex items-center gap-1.5 text-slate-700 font-semibold px-2 py-1 bg-slate-50 rounded-lg border border-slate-200">
                 <Mail className="w-3.5 h-3.5 text-teal-700" />
                 {item.email}
               </span>
             )}
             {item.phone && (
-              <span className="flex items-center gap-1 text-slate-700">
+              <span className="flex items-center gap-1.5 text-slate-700 font-semibold px-2 py-1 bg-slate-50 rounded-lg border border-slate-200">
                 <Phone className="w-3.5 h-3.5 text-emerald-700" />
                 {item.phone}
               </span>
@@ -135,10 +135,10 @@ export function EntityCard({ item }: EntityCardProps) {
 
           <Link
             href={`/entity/${item.entity_id}`}
-            className="text-xs font-bold text-slate-900 hover:text-emerald-700 flex items-center gap-1 transition-all ml-auto group-hover:translate-x-0.5"
+            className="text-xs font-bold text-slate-900 hover:text-emerald-800 flex items-center gap-1.5 transition-all ml-auto group-hover:translate-x-1 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-200"
           >
-            <span>Provenance Lineage</span>
-            <ArrowRight className="w-3.5 h-3.5 text-emerald-700" />
+            <span>Audit Lineage</span>
+            <ArrowRight className="w-4 h-4 text-emerald-700" />
           </Link>
         </div>
 
