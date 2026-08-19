@@ -1,6 +1,8 @@
 import { EntityDetail, SearchJobResponse, SearchResultItem, APIKeyItem } from "@/types";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL !== undefined 
+  ? process.env.NEXT_PUBLIC_API_URL 
+  : typeof window !== "undefined" ? "" : "http://localhost:8000";
 
 export async function createSearchJob(query: string, sources: string[] = ["auto"]): Promise<SearchJobResponse> {
   const res = await fetch(`${API_BASE_URL}/api/v1/search`, {
