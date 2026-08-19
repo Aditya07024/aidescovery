@@ -136,7 +136,7 @@ class DuckDuckGoSearchProvider(SearchProvider):
         except Exception as e:
             logger.debug(f"DuckDuckGo search error: {e}")
 
-        return await MockSearchProvider().search(query, limit)
+        return []
 
 
 class MockSearchProvider(SearchProvider):
