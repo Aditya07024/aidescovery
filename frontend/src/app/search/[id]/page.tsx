@@ -57,10 +57,10 @@ export default function SearchResultsPage() {
   });
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8 py-6 px-2 sm:px-4">
+    <div className="max-w-6xl mx-auto space-y-12 sm:space-y-14 py-8 px-3 sm:px-6">
       
       {/* Search Header & Pipeline Execution Glass Panel */}
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl relative overflow-hidden bg-white/95 border border-slate-200">
+      <div className="glass-panel p-7 sm:p-9 rounded-3xl space-y-7 shadow-xl relative overflow-hidden bg-white/95 border border-slate-200 mb-10">
         
         <div className="flex items-start justify-between flex-wrap gap-4">
           <div className="space-y-2">
@@ -79,14 +79,14 @@ export default function SearchResultsPage() {
               <a
                 href={getExportUrl(searchId, "csv")}
                 download
-                className="px-4.5 py-2.5 bg-slate-900 hover:bg-emerald-800 text-white border border-slate-800 rounded-2xl text-xs font-bold flex items-center gap-2 transition-all shadow-md active:scale-95"
+                className="px-5 py-2.5 bg-slate-900 hover:bg-emerald-800 text-white border border-slate-800 rounded-2xl text-xs font-bold flex items-center gap-2 transition-all shadow-md active:scale-95"
               >
                 <Download className="w-4 h-4 text-emerald-400" /> Export CSV
               </a>
               <a
                 href={getExportUrl(searchId, "json")}
                 download
-                className="px-4.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-300 rounded-2xl text-xs font-bold flex items-center gap-2 transition-all shadow-sm active:scale-95"
+                className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-300 rounded-2xl text-xs font-bold flex items-center gap-2 transition-all shadow-sm active:scale-95"
               >
                 <Download className="w-4 h-4 text-emerald-700" /> Export JSON
               </a>
@@ -96,7 +96,7 @@ export default function SearchResultsPage() {
 
         {/* Real-time Stage Progress Tracker */}
         {job && (
-          <div className="space-y-4 pt-4 border-t border-slate-100">
+          <div className="space-y-5 pt-5 border-t border-slate-100">
             <div className="flex items-center justify-between text-xs font-bold text-slate-700">
               <span className="capitalize flex items-center gap-2 text-sm font-extrabold">
                 {job.status !== "completed" && job.status !== "failed" && (
@@ -116,13 +116,13 @@ export default function SearchResultsPage() {
             </div>
 
             {/* Discovered vs Qualified Summary Bar */}
-            <div className="flex items-center gap-6 text-xs text-slate-600 font-semibold pt-1">
+            <div className="flex items-center gap-8 text-xs text-slate-600 font-semibold pt-2 flex-wrap">
               <div className="flex items-center gap-2">
-                <Layers className="w-4 h-4 text-emerald-700" />
+                <Layers className="w-4.5 h-4.5 text-emerald-700" />
                 <span>Total Discovered: <strong className="text-slate-900 font-extrabold text-sm">{job.discovered}</strong></span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                <CheckCircle2 className="w-4.5 h-4.5 text-emerald-700" />
                 <span>Qualified Matches: <strong className="text-emerald-800 font-extrabold text-sm">{job.qualified}</strong></span>
               </div>
             </div>
@@ -133,22 +133,22 @@ export default function SearchResultsPage() {
 
       {/* AI Search Plan Specification Card */}
       {job?.structured_plan && (
-        <div className="glass-panel p-5 sm:p-6 rounded-3xl text-xs space-y-3 bg-white border border-slate-200 shadow-sm">
+        <div className="glass-panel p-6 sm:p-7 rounded-3xl text-xs space-y-4 bg-white border border-slate-200 shadow-sm mb-10">
           <div className="flex items-center gap-2 text-slate-500 font-bold uppercase tracking-widest text-[10px]">
             <Cpu className="w-4 h-4 text-emerald-700" />
             <span>AI Executed Structured Search Plan</span>
           </div>
           <div className="flex items-center gap-6 flex-wrap text-slate-800 font-semibold text-xs pt-1">
-            <div>Target Entity: <span className="font-extrabold text-emerald-800 uppercase px-3 py-1 rounded-lg bg-emerald-50 border border-emerald-200 shadow-2xs ml-1">{job.structured_plan.entity_type}</span></div>
-            <div>Roles / Specialty: <span className="font-bold text-slate-900 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 ml-1">{job.structured_plan.profession?.join(", ") || "Any"}</span></div>
-            <div>Location Scope: <span className="font-bold text-slate-900 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 ml-1">{job.structured_plan.location?.city || job.structured_plan.location?.country || "Global"}</span></div>
+            <div>Target Entity: <span className="font-extrabold text-emerald-800 uppercase px-3.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200 shadow-2xs ml-1.5">{job.structured_plan.entity_type}</span></div>
+            <div>Roles / Specialty: <span className="font-bold text-slate-900 bg-slate-100 px-3 py-1 rounded-lg border border-slate-200 ml-1.5">{job.structured_plan.profession?.join(", ") || "Any"}</span></div>
+            <div>Location Scope: <span className="font-bold text-slate-900 bg-slate-100 px-3 py-1 rounded-lg border border-slate-200 ml-1.5">{job.structured_plan.location?.city || job.structured_plan.location?.country || "Global"}</span></div>
           </div>
         </div>
       )}
 
       {/* Results Header Controls */}
-      <div className="flex items-center justify-between flex-wrap gap-4 pt-3 pb-1">
-        <div className="flex items-center gap-3">
+      <div className="flex items-center justify-between flex-wrap gap-4 pt-4 pb-3 mb-8 border-b border-slate-200">
+        <div className="flex items-center gap-4">
           <div className="relative">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
@@ -156,7 +156,7 @@ export default function SearchResultsPage() {
               placeholder="Filter leads by name, keyword..."
               value={filterQuery}
               onChange={(e) => setFilterQuery(e.target.value)}
-              className="pl-9 pr-4 py-2.5 glass-input rounded-2xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none w-60 sm:w-80 font-medium border-slate-300"
+              className="pl-10 pr-4 py-2.5 glass-input rounded-2xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none w-64 sm:w-80 font-medium border-slate-300"
             />
           </div>
 
@@ -178,7 +178,7 @@ export default function SearchResultsPage() {
         </span>
       </div>
 
-      {/* Entity Cards Grid */}
+      {/* Entity Cards Grid with 40px-56px Spacing */}
       {loading ? (
         <div className="py-24 text-center space-y-4 glass-panel rounded-3xl bg-white border border-slate-200 shadow-sm">
           <Loader2 className="w-10 h-10 text-emerald-700 animate-spin mx-auto" />
@@ -190,7 +190,7 @@ export default function SearchResultsPage() {
           <p className="font-semibold text-slate-700">No matching entities found for this filter criteria.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 lg:gap-14 pt-2">
           {filteredResults.map((item) => (
             <EntityCard key={item.entity_id} item={item} />
           ))}
