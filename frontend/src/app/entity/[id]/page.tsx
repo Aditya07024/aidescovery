@@ -32,7 +32,7 @@ export default function EntityDetailsPage() {
   if (loading) {
     return (
       <div className="py-24 text-center space-y-4">
-        <div className="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto" />
+        <div className="w-10 h-10 border-4 border-emerald-700 border-t-transparent rounded-full animate-spin mx-auto" />
         <p className="text-slate-600 text-sm font-semibold">Loading Entity Intelligence & Data Provenance Lineage...</p>
       </div>
     );
@@ -42,7 +42,7 @@ export default function EntityDetailsPage() {
     return (
       <div className="py-20 text-center space-y-4 glass-panel rounded-3xl">
         <p className="text-slate-700 font-semibold">Entity profile not found.</p>
-        <Link href="/" className="inline-flex items-center gap-2 text-indigo-600 text-xs font-bold hover:underline">
+        <Link href="/" className="inline-flex items-center gap-2 text-emerald-700 text-xs font-bold hover:underline">
           <ArrowLeft className="w-4 h-4" /> Back to Discovery Search
         </Link>
       </div>
@@ -54,20 +54,20 @@ export default function EntityDetailsPage() {
       
       {/* Back Button */}
       <Link href="/" className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 text-xs font-bold transition-colors">
-        <ArrowLeft className="w-4 h-4 text-indigo-600" /> Back to Discovery Dashboard
+        <ArrowLeft className="w-4 h-4 text-emerald-700" /> Back to Discovery Dashboard
       </Link>
 
       {/* Hero Entity Header */}
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl relative overflow-hidden bg-white/90">
+      <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl relative overflow-hidden bg-white/95">
         
         <div className="flex items-start justify-between flex-wrap gap-4">
           <div className="space-y-2">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-[11px] font-extrabold uppercase tracking-wider text-indigo-700 px-3 py-1 rounded-xl bg-indigo-50 border border-indigo-200">
+              <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-900 px-3 py-1 rounded-xl bg-slate-100 border border-slate-300">
                 {entity.entity_type} Profile
               </span>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 px-3 py-1 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-800 px-3 py-1 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
                 Verified In DB
               </span>
             </div>
@@ -78,7 +78,7 @@ export default function EntityDetailsPage() {
 
             {entity.location_summary && (
               <p className="text-xs sm:text-sm text-slate-600 flex items-center gap-1.5 font-medium">
-                <MapPin className="w-4 h-4 text-indigo-600 shrink-0" />
+                <MapPin className="w-4 h-4 text-emerald-700 shrink-0" />
                 <span>{entity.location_summary}</span>
               </p>
             )}
@@ -89,19 +89,19 @@ export default function EntityDetailsPage() {
         <div className="pt-4 border-t border-slate-200 flex items-center gap-4 flex-wrap text-xs text-slate-700 font-semibold">
           {entity.website && (
             <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200">
-              <Globe className="w-4 h-4 text-indigo-600" />
+              <Globe className="w-4 h-4 text-emerald-700" />
               <span>{entity.website}</span>
             </div>
           )}
           {entity.email && (
             <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200">
-              <Mail className="w-4 h-4 text-sky-600" />
+              <Mail className="w-4 h-4 text-teal-700" />
               <span>{entity.email}</span>
             </div>
           )}
           {entity.phone && (
             <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200">
-              <Phone className="w-4 h-4 text-emerald-600" />
+              <Phone className="w-4 h-4 text-emerald-700" />
               <span>{entity.phone}</span>
             </div>
           )}
@@ -115,11 +115,11 @@ export default function EntityDetailsPage() {
           onClick={() => setActiveTab("provenance")}
           className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition-all ${
             activeTab === "provenance"
-              ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/20"
+              ? "bg-slate-900 text-white shadow-md"
               : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/50"
           }`}
         >
-          <ShieldCheck className="w-4 h-4" />
+          <ShieldCheck className="w-4 h-4 text-emerald-400" />
           <span>Data Provenance & Fact Lineage ({entity.sources?.length || 0})</span>
         </button>
 
@@ -127,11 +127,11 @@ export default function EntityDetailsPage() {
           onClick={() => setActiveTab("raw")}
           className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition-all ${
             activeTab === "raw"
-              ? "bg-sky-600 text-white shadow-md shadow-sky-500/20"
+              ? "bg-emerald-800 text-white shadow-md"
               : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/50"
           }`}
         >
-          <Database className="w-4 h-4" />
+          <Database className="w-4 h-4 text-emerald-300" />
           <span>Raw Structured JSON Payload</span>
         </button>
       </div>
@@ -141,7 +141,7 @@ export default function EntityDetailsPage() {
         <div className="glass-panel rounded-3xl overflow-hidden shadow-xl bg-white">
           <div className="p-4 sm:p-5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
             <span className="text-xs font-extrabold uppercase tracking-widest text-slate-700 flex items-center gap-2">
-              <Layers className="w-4 h-4 text-indigo-600" />
+              <Layers className="w-4 h-4 text-emerald-700" />
               Observed vs Inferred Attribute Lineage Matrix
             </span>
             <span className="text-[11px] text-slate-500 font-medium">Strict Anti-Hallucination Lineage</span>
@@ -162,15 +162,15 @@ export default function EntityDetailsPage() {
                 {entity.sources && entity.sources.length > 0 ? (
                   entity.sources.map((prov, idx) => (
                     <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                      <td className="px-5 py-4 font-mono font-bold text-indigo-600">{prov.field_name}</td>
+                      <td className="px-5 py-4 font-mono font-bold text-slate-900">{prov.field_name}</td>
                       <td className="px-5 py-4 text-slate-900 font-semibold">{prov.value_raw || "—"}</td>
                       <td className="px-5 py-4">
                         {prov.verification_status === "inferred" ? (
-                          <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-purple-100 text-purple-700 border border-purple-200">
+                          <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200">
                             INFERRED FACT
                           </span>
                         ) : (
-                          <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700 border border-emerald-200">
+                          <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200">
                             OBSERVED FACT
                           </span>
                         )}
@@ -181,7 +181,7 @@ export default function EntityDetailsPage() {
                             href={prov.source_url}
                             target="_blank"
                             rel="noreferrer"
-                            className="text-indigo-600 hover:underline flex items-center gap-1 font-medium"
+                            className="text-emerald-700 hover:underline flex items-center gap-1 font-medium"
                           >
                             <Globe className="w-3.5 h-3.5 shrink-0" />
                             <span className="truncate">{prov.source_url}</span>
@@ -209,7 +209,7 @@ export default function EntityDetailsPage() {
         </div>
       ) : (
         /* Raw JSON Viewer */
-        <div className="glass-panel p-5 rounded-3xl border border-slate-200 font-mono text-xs text-slate-800 overflow-x-auto bg-slate-900 text-slate-100">
+        <div className="glass-panel p-5 rounded-3xl border border-slate-200 font-mono text-xs text-slate-100 overflow-x-auto bg-slate-900">
           <pre>{JSON.stringify(entity, null, 2)}</pre>
         </div>
       )}
